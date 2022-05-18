@@ -308,7 +308,7 @@ class Client:
 
         # Queue used to trigger flushes to the socket
         self._flush_queue = asyncio.Queue(
-            maxsize=flusher_queue_size, loop=self._loop
+            maxsize=flusher_queue_size
         )
 
         if self.options["dont_randomize"] is False:
@@ -724,7 +724,6 @@ class Client:
             sub.pending_bytes_limit = pending_bytes_limit
             sub.pending_queue = asyncio.Queue(
                 maxsize=pending_msgs_limit,
-                loop=self._loop,
             )
 
             # Close the delivery coroutine over the sub and error handler
@@ -889,7 +888,6 @@ class Client:
             sub.pending_bytes_limit = DEFAULT_SUB_PENDING_BYTES_LIMIT
             sub.pending_queue = asyncio.Queue(
                 maxsize=sub.pending_msgs_limit,
-                loop=self._loop,
             )
 
             # Single task for handling the requests
